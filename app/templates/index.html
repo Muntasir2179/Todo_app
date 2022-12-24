@@ -3,7 +3,8 @@
 {% block content %}
 <div>
   <div class="container pt-5">
-    <div class="col-lg-4 mx-auto shadow p-0 mt-5">
+    <div class="row p-0 mt-5">
+      <div class="col-lg-4 mx-auto shadow p-0">
         <div class="alert alert-info">
             <h2>Add New TODO</h2>
         </div>
@@ -15,6 +16,38 @@
                 <input class="btn btn-primary" type="submit" value="Add">
             </form>
         </div>
+      </div>
+
+      <div class="col">
+        <div class="border">
+          
+          <div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Title</th>
+                  <th>Status</th>
+                  <th>Priority</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for todo in todos %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.status}}</td>
+                    <td>{{todo.priority}}</td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
