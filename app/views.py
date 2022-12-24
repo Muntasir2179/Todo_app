@@ -1,12 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login as loginUser
+from app.forms import TODOForm
 
 # Create your views here.
 
 
 def home(request):
-    return render(request, 'index.html')
+    form = TODOForm()
+    return render(request, 'index.html', context={'form': form})
 
 
 def login(request):
