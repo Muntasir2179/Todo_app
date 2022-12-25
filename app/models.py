@@ -5,10 +5,12 @@ from django.contrib.auth.models import User
 
 
 class TODO(models.Model):
+    # choices for the status
     status_choices = [
         ('C', 'COMPLETED'),
         ('P', 'PENDING'),
     ]
+    # choices for the priority
     priority_choices = [
         ('1', '1️⃣'),
         ('2', '2️⃣'),
@@ -22,7 +24,12 @@ class TODO(models.Model):
         ('10', '🔟'),
     ]
     title = models.CharField(max_length=50)
+    # passing the list status_choices so that we can access the values of the list when we creating any task
     status = models.CharField(max_length=2, choices=status_choices)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
+    # passing the list priority_choices so that we can access the values of the list when we creating any task
     priority = models.CharField(max_length=2, choices=priority_choices)
+
+    def __str__(self):
+        return self.title + " | " + str(self.user)

@@ -3,17 +3,26 @@
 {% block content %}
 <div class="container pt-5">
   <div class="col-lg-5 shadow mx-auto p-0">
-    <div class="alert alert-success">
+    <div class="alert alert-success text-center">
         <h2>Create Account</h2>
     </div>
         <div class="p-4">
             <form method="post" action="/signup/">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <hr>
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password1" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password2" placeholder="Confirm Password">
+                </div>
+                {% comment %} {{ form.as_p }} {% endcomment %}
+                <br>
                 <input class="btn btn-success" type="submit" value="Create Account">
             </form>
         </div>
-</div>
+    </div>
 </div>
 {% endblock content %}

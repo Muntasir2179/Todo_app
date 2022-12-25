@@ -3,15 +3,21 @@
 {% block content %}
 <div class="container pt-5">
   <div class="col-lg-4 mx-auto shadow p-0 mt-5">
-      <div class="alert alert-info">
+      <div class="alert alert-info text-center">
           <h2>Login Page</h2>
       </div>
       <div class="p-4">
           <form method="POST" action="/login/">
-              {% csrf_token %}
-              {{ form.as_p }}
-              <hr>
-              <input class="btn btn-primary" type="submit" value="Login">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
+                </div>
+                {% comment %} {{ form.as_p }} {% endcomment %}
+                <br>
+                <input class="btn btn-primary" type="submit" value="Login">
           </form>
       </div>
   </div>
