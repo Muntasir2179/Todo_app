@@ -14,7 +14,7 @@ def home(request):
     if request.user.is_authenticated:
         user = request.user
         form = TODOForm()
-        todos = TODO.objects.filter(user=user)
+        todos = TODO.objects.filter(user=user).order_by('priority')
         return render(request, 'index.html', context={'form': form, 'todos': todos})
 
 
@@ -79,3 +79,15 @@ def add_todo(request):
 def signout(request):
     logout(request)
     return redirect('login_page')
+
+
+def delete_todo(request, id):
+    TODO.objects.get(pk=id).delete()
+    return redirect('home_page')
+
+
+def change_todo(request, id, status):
+    todo = TODO.objects.get(pk=id)
+    todo.status = status
+    todo.save()
+    return redirect('home_page')
