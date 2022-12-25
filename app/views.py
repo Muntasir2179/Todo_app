@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import authenticate, login as loginUser
+from django.contrib.auth import authenticate, login as loginUser, logout
 from app.forms import TODOForm
 from app.models import TODO
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 
+@login_required(login_url='login_page')
+# forcing user to login first and denying the access of any other link without being logged in
 def home(request):
     if request.user.is_authenticated:
         user = request.user
@@ -71,3 +74,8 @@ def add_todo(request):
             return redirect('home_page')
         else:
             return render(request, 'index.html', context={'form': form})
+
+
+def signout(request):
+    logout(request)
+    return redirect('login_page')
