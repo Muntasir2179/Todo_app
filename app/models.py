@@ -31,5 +31,6 @@ class TODO(models.Model):
     # passing the list priority_choices so that we can access the values of the list when we creating any task
     priority = models.CharField(max_length=2, choices=priority_choices)
 
+    # defining how the data title will be in the admin database
     def __str__(self):
         return self.title + " | " + str(self.user)
